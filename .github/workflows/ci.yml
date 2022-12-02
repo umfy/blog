@@ -39,5 +39,5 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "umfy-blog"
+          project: "umfy"
           entrypoint: "./main.tsx" # TODO: update entrypoint
