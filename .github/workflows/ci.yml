@@ -1,13 +1,13 @@
 name: ci
 
-on: push
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Deno
         uses: denoland/setup-deno@v1
@@ -17,6 +17,8 @@ jobs:
 
       - name: Lint
         run: deno lint
+
+        # can add a test step here
 
   deploy:
     name: Deploy
@@ -29,10 +31,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v3
 
-      # TODO: add a build step here
+      # can add a build step here
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "umfy"
-          entrypoint: "./main.tsx" # TODO: update entrypoint
+          project: "umfy" # the name of the project on Deno Deploy
+          entrypoint: "./main.tsx" # the entrypoint to deploy

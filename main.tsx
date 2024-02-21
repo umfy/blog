@@ -1,27 +1,24 @@
-import blog, { ga, h, redirects } from "blog";
+import blog, { redirects } from "https://deno.land/x/blog/blog.tsx";
 
 blog({
+  author: "Turret Cegielski",
   title: "My Blog",
-  description: "This is my new blog.",
-  // header: <header>Your custom header</header>,
-  // section: <section>Your custom section</section>,
-  // footer: <footer>Your custom footer</footer>,
+  description: "Tabletop RPG and math",
   avatar: "https://deno-avatar.deno.dev/avatar/blog.svg",
   avatarClass: "rounded-full",
-  author: "Turret Cegielski",
   links: [
     { title: "GitHub", url: "https://github.com/umfy" },
   ],
-  // middlewares: [
-
-  // If you want to set up Google Analytics, paste your GA key here.
-  // ga("UA-XXXXXXXX-X"),
-
-  // If you want to provide some redirections, you can specify them here,
-  // pathname specified in a key will redirect to pathname in the value.
-  // redirects({
-  //  "/hello_world.html": "/hello_world",
-  // }),
-
-  // ]
+  lang: "en",
+  // localised format based on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+  dateFormat: (date) =>
+    new Intl.DateTimeFormat("en-GB", { dateStyle: "long" }).format(date),
+  middlewares: [
+    // If you want to set up Google Analytics, paste your GA key here.
+    // ga("UA-XXXXXXXX-X"),
+    redirects({
+      "main": "removing_armor_class",
+    }),
+  ],
+  // favicon: "favicon.ico",
 });
